@@ -8,7 +8,7 @@
 
 <!-- Mirrored from templates.esmet.me/universe/Blue/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 18 Oct 2020 05:30:19 GMT -->
 <head>
-    <title>Universe - College Education Responsive Template</title>
+    <title>{{isset($gschool_info->school_name)?$gschool_info->school_name:''}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="College Education Responsive Template">
     <meta name="author" content="Esmet">
@@ -18,11 +18,12 @@
 
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{isset($gschool_info->favicon)?$gschool_info->favicon:''}}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{isset($gschool_info->favicon)?$gschool_info->favicon:''}}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{isset($gschool_info->favicon)?$gschool_info->favicon:''}}">
+    <link rel="apple-touch-icon-precomposed" href="{{isset($gschool_info->favicon)?$gschool_info->favicon:''}}">
+    <link rel="shortcut icon" href="{{isset($gschool_info->favicon)?$gschool_info->favicon:''}}">
 
     <!-- CSS Bootstrap & Custom -->
     <link href="{{asset('assets/front-end/bootstrap/css/bootstrap.css')}} " rel="stylesheet" media="screen">
@@ -32,7 +33,8 @@
     <link href="{{asset('assets/front-end/style.css')}}" rel="stylesheet" media="screen">
 
     <!-- JavaScripts -->
-    <script src="https://saccountsprovider.com/assets/front-end/js/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
     <script src="{{asset('assets/front-end/js/modernizr.js')}} "></script>
 
     @stack('css')
@@ -55,7 +57,8 @@
 @include("layouts.partials.footer")
 
 <script src="{{asset('assets/front-end/bootstrap/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('assets/front-end/js/plugins.js')}}"></script>
+{{--<script src="{{asset('assets/front-end/js/plugins.js')}}"></script>--}}
+<script src="https://templates.esmet.me/universe/Blue/js/plugins.js"></script>
 <script src="{{asset('assets/front-end/js/custom.js')}} "></script>
 @stack('js')
 </body>

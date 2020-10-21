@@ -2,14 +2,18 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 header-left">
-                <p><i class="fa fa-phone"></i> +01 2334 853</p>
-                <p><i class="fa fa-envelope"></i> <a href="mailto:email@universe.com">email@universe.com</a></p>
+                <p><i class="fa fa-phone"></i> {{isset($gschool_info)?$gschool_info->phone:''}}</p>
+                <p><i class="fa fa-envelope"></i> <a href="mailto:email@universe.com">{{isset($gschool_info)?$gschool_info->email:''}}</a></p>
             </div> <!-- /.header-left -->
 
             <div class="col-md-4">
                 <div class="logo">
-                    <a href="index.html" title="Universe" rel="home">
-                        <img src="images/logo.png" alt="Universe">
+                    <a href="{{url('/')}}" title="Universe" rel="home">
+                        <img src="{{isset($gschool_info)?$gschool_info->logo:''}}" alt="">
+                        @if(isset($gschool_info->logo))
+                            <img src="{{ Storage::disk('s3')->url('eims/'.$gschool_info->logo)}}" alt="{{$gschool_info->school_name}}">
+                            @endif
+
                     </a>
                 </div> <!-- /.logo -->
             </div> <!-- /.col-md-4 -->

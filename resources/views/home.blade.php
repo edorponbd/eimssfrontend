@@ -7,27 +7,16 @@
                 <div class="main-slideshow">
                     <div class="flexslider">
                         <ul class="slides">
-                            <li>
-                                <img src="images/slide1.jpg" />
-                                <div class="slider-caption">
-                                    <h2><a href="blog-single.html">When a Doctor’s Visit Is a Guilt Trip</a></h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="images/slide2.jpg" />
-                                <div class="slider-caption">
-                                    <h2><a href="blog-single.html">Unlocking the scrolls of Herculaneum</a></h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="images/slide3.jpg" />
-                                <div class="slider-caption">
-                                    <h2><a href="blog-single.html">Corin Sworn wins Max Mara Art Prize</a></h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                                </div>
-                            </li>
+
+                            @foreach($sliders as $slider)
+                                <li>
+                                    <img src="{{ Storage::disk('s3')->url('eims/'.$slider->image)}}" />
+                                    <div class="slider-caption">
+                                        <h2><a href="#">{{$slider->title}}</a></h2>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+                                    </div>
+                                </li>
+                                @endforeach
                         </ul> <!-- /.slides -->
                     </div> <!-- /.flexslider -->
                 </div> <!-- /.main-slideshow -->
@@ -118,36 +107,20 @@
                     <div class="col-md-6">
                         <div class="widget-main">
                             <div class="widget-main-title">
-                                <h4 class="widget-title">Latest News</h4>
+                                <h4 class="widget-title">Latest Notice</h4>
                             </div> <!-- /.widget-main-title -->
                             <div class="widget-inner">
-                                <div class="blog-list-post clearfix">
-                                    <div class="blog-list-thumb">
-                                        <a href="blog-single.html"><img src="images/blog/blog-small-thumb1.jpg" alt=""></a>
-                                    </div>
-                                    <div class="blog-list-details">
-                                        <h5 class="blog-list-title"><a href="blog-single.html">Graduate Open Day at the Ruskin</a></h5>
-                                        <p class="blog-list-meta small-text"><span><a href="#">12 January 2014</a></span> with <span><a href="#">3 comments</a></span></p>
-                                    </div>
-                                </div> <!-- /.blog-list-post -->
-                                <div class="blog-list-post clearfix">
-                                    <div class="blog-list-thumb">
-                                        <a href="blog-single.html"><img src="images/blog/blog-small-thumb2.jpg" alt=""></a>
-                                    </div>
-                                    <div class="blog-list-details">
-                                        <h5 class="blog-list-title"><a href="blog-single.html">Visiting Artists: Giles Bailey</a></h5>
-                                        <p class="blog-list-meta small-text"><span><a href="#">12 January 2014</a></span> with <span><a href="#">3 comments</a></span></p>
-                                    </div>
-                                </div> <!-- /.blog-list-post -->
-                                <div class="blog-list-post clearfix">
-                                    <div class="blog-list-thumb">
-                                        <a href="blog-single.html"><img src="images/blog/blog-small-thumb3.jpg" alt=""></a>
-                                    </div>
-                                    <div class="blog-list-details">
-                                        <h5 class="blog-list-title"><a href="blog-single.html">Workshop: Theories of the Image</a></h5>
-                                        <p class="blog-list-meta small-text"><span><a href="#">12 January 2014</a></span> with <span><a href="#">3 comments</a></span></p>
-                                    </div>
-                                </div> <!-- /.blog-list-post -->
+                                @foreach($notices as $notice)
+                                    <div class="blog-list-post clearfix">
+                                        <div class="blog-list-thumb">
+                                            <a href="{{$notice->id}}"><img src="data:image/png;base64,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" alt=""></a>
+                                        </div>
+                                        <div class="blog-list-details">
+                                            <h5 class="blog-list-title"><a href="blog-single.html">{{$notice->notice_title}}</a></h5>
+                                            <p class="blog-list-meta small-text"><span><a href="#">{{$notice->publish_on}}</a></span></p>
+                                        </div>
+                                    </div> <!-- /.blog-list-post -->
+                                @endforeach
                             </div> <!-- /.widget-inner -->
                         </div> <!-- /.widget-main -->
                     </div> <!-- /col-md-6 -->
